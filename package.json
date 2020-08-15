@@ -1,0 +1,29 @@
+{
+  "name": "myfirstnodeserver",
+  "version": "1.0.0",
+  "description": "creating project with sequelize ORM",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avneesh2409/NodeJs-Sequelize-Project.git"
+  },
+  "keywords": [
+    "nodejs",
+    "sequelize"
+  ],
+  "author": "Avneesh Dwivedi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avneesh2409/NodeJs-Sequelize-Project/issues"
+  },
+  "homepage": "https://github.com/avneesh2409/NodeJs-Sequelize-Project#readme",
+  "dependencies": {
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "sequelize": "^6.3.4",
+    "sequelize-cli": "^6.2.0"
+  }
+}
