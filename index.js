@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const routeController = require('./sequelize/user.service');
+const serviceRoute = require('./mockData/storeApiData');
 const app = express();
 var corsOptions = {
     origin: "http://localhost:8081"
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 	res.send(`
 		<h2>Hello, Sequelize + Express!</h2>`);
 });
+app.use('/api/data',serviceRoute);
 app.get(
     `/api/user/get`,
     makeHandlerAwareOfAsyncErrors(routeController.getAll)
