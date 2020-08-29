@@ -1,15 +1,36 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const http = require('http');
 const cors = require("cors");
 const routeController = require('./sequelize/user.service');
 const serviceRoute = require('./mockData/storeApiData');
+const { getPackedSettings } = require('http2');
+
 const app = express();
+const server = http.createServer(app);
+const io = require("socket.io")(server);
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:3000"
   };
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+let interval;
+io.on('connect', socket => {
+    console.log('connect');
+    if(interval){
+        clearInterval(interval);
+    }
+    interval = setInterval(()=>getApiEmit(socket),1000);
+    socket.on("disconnect", () => {
+        console.log("Client disconnected");
+        clearInterval(interval);
+      });
+  });  
+function getApiEmit(socket){
+    const response = new Date().toString();
+    socket.emit("FromAPI", response);
+}
 function makeHandlerAwareOfAsyncErrors(handler) {
 	return async function(req, res, next) {
 		try {
@@ -46,6 +67,7 @@ app.post(
 );
 
 const PORT = process.env.PORT || 9000;
-app.listen(PORT, () => {
+
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

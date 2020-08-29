@@ -21,7 +21,14 @@ const getHandler = (req,res) =>{
         });
 }
 const postHandler = (req,res) =>{
-    res.send("got the post request");
+    let time = Date.now();
+    let filepath = path.join(__dirname,'myQuestion',`${time}_questions.json`);
+    fs.writeFile(filepath,JSON.stringify(req.body),'utf8',(err)=>{
+        if(err){
+            res.json({status:false,message:'error'})
+        }
+    });
+    res.json({status:true})
 }
 
 const deleteHandler = async (req,res) =>{
