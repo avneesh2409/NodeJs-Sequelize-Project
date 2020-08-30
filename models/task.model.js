@@ -21,5 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Task',
     });
+    Task.sync({ alter: true })
     return Task;
   };

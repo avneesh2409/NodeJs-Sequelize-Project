@@ -25,9 +25,7 @@ fs
     db[model.name] = model;
   });
 console.log("database :-",db)
-// Object.keys(db).forEach((modelName,i) => {
-//     db[modelName] = Object.values(db)[i];
-// });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
