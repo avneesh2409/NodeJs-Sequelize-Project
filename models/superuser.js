@@ -19,6 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'SuperUser',
   });
-  SuperUser.sync({alter:true});
+  // SuperUser.sync({alter:true});
   return SuperUser;
 };

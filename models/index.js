@@ -14,8 +14,7 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-
-fs
+  fs
   .readdirSync(__dirname)
   .filter(file => {
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
@@ -24,9 +23,10 @@ fs
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
-console.log("database :-",db)
-
+  console.log("database :-",db);
+  
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db.Sequelize = Sequelize;  
 
-module.exports = db;
+
+module.exports = db;  

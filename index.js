@@ -5,7 +5,7 @@ const cors = require("cors");
 const routeController = require('./sequelize/user.service');
 const serviceRoute = require('./mockData/storeApiData');
 const { chatHandler } = require('./socketHandler');
-const { getAll, createChat, destroyChat } = require('./sequelize/chat.service');
+
 
 const app = express();
 const server = http.createServer(app);
@@ -16,22 +16,9 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-let users = {};
-io.on('connect', socket => {
-    console.log('connect');
-    socket.on('login',(user)=>{
-        console.log(getAll(socket.id))
-                createChat(user,socket.id)
-                socket.emit('event',"Hello Welcome to my chat services");
-           
-})
-    chatHandler(socket,io)
-    socket.on("disconnect", () => {
-        destroyChat(socket.id);
-        console.log("Client disconnected");
-      });
-  });  
 
+
+chatHandler(io);
 
 function makeHandlerAwareOfAsyncErrors(handler) {
 	return async function(req, res, next) {
