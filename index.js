@@ -5,6 +5,7 @@ const cors = require("cors");
 const routeController = require('./sequelize/user.service');
 const serviceRoute = require('./mockData/storeApiData');
 const { chatHandler } = require('./socketHandler');
+const { videoChatHandler } = require('./socketHandler/vedioChat');
 
 
 const app = express();
@@ -17,8 +18,8 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-chatHandler(io);
+// chatHandler(io);
+videoChatHandler(io)
 
 function makeHandlerAwareOfAsyncErrors(handler) {
 	return async function(req, res, next) {
@@ -29,10 +30,6 @@ function makeHandlerAwareOfAsyncErrors(handler) {
 		}
 	};
 }
-app.get('/', (req, res) => {
-	res.send(`
-		<h2>Hello, Sequelize + Express!</h2>`);
-});
 app.use('/api/data',serviceRoute);
 app.get(
     `/api/user/get`,

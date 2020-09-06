@@ -1,0 +1,34 @@
+.wrapper {    
+    margin: auto;    
+    background: rgb(196, 169, 169);    
+    margin-top: 50px;     
+    padding-left: 50px;    
+    padding-right: 50px;    
+    padding-bottom: 50px;    
+  }
+  .color{
+      color:'white';
+  }
+  .homeWrapper{
+     padding: 20px;
+     margin:20px;
+     background:#ddd;
+     text-align: center;
+  }
+  /* .layout{
+      background: #ddd;
+  } */
+  .navbar{
+      width:100%;
+  }
+  .navigationList{
+    position:relative;
+    left:30%;
+  }
+  .navigationList button{
+      margin-left: 20px;
+  }
+  
+  .navbar button{
+    margin: 10px 20px 10px 0px;
+}
